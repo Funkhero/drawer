@@ -6,6 +6,7 @@ import canvasState from '../store/canvas';
 
 import Brush from '../tools/brush';
 import Rect from '../tools/rect';
+import Eraser from '../tools/eraser';
 
 const Toolbar = () => {
 	function changeColor(event) {
@@ -15,7 +16,7 @@ const Toolbar = () => {
 			<button className="toolbar__btn brush" onClick={ () => toolState.setTool(new Brush(canvasState.canvas)) } />
 			<button className="toolbar__btn rect" onClick={ () => toolState.setTool(new Rect(canvasState.canvas)) } />
 			<button className="toolbar__btn circle" />
-			<button className="toolbar__btn eraser" />
+			<button className="toolbar__btn eraser" onClick={ () => toolState.setTool(new Eraser(canvasState.canvas)) } />
 			<button className="toolbar__btn line" />
 			<input onChange={e => changeColor(e)} style={{ marginLeft:10 }} type="color" />
 			<button className="toolbar__btn undo" />
