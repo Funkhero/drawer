@@ -9,9 +9,13 @@ import '../styles/canvas.scss';
 const Canvas = observer(() => {
 	const canvasRef = useRef();
 	useEffect(() => {
-		canvasState.setCanvas(canvasRef.current)
+		canvasState.setCanvas(canvasRef.current);
 		toolState.setTool(new Brush(canvasRef.current));
 	}, []);
+
+	const mouseDownHandler = () => {
+		canvasState.pushToUndo(canvasRef.current.toDataURL());
+	}
 
 	return (
 		<div className="canvas">
@@ -19,6 +23,7 @@ const Canvas = observer(() => {
 				ref={ canvasRef }
 				width={ 600 }
 				height={ 400 }
+				onMouseDown={ () => mouseDownHandler() }
 			/>
 		</div>
 	);
